@@ -58,7 +58,19 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-
+  window.addEventListener('keydown', function(e){
+    //Select the audio element whose data-key matches the keyCode of the pressed key
+    let audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+    console.log(audio)
+    //If no matching audio element exists that matches the pressed key, simply do nothing
+    if(!audio) return;
+    
+    //If audio is already playing, this will reset it so that it will play again as soon as the key is pressed
+    //Otherwise, triggering .play won't work, because the audio is already playing
+    audio.currentTime = 0;
+    //Play the current audio
+    audio.play();
+  })
 </script>
 
 
